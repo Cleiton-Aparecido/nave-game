@@ -455,6 +455,12 @@ class Game:
             level_text = f'Level: {self.level}'
             text_surface = self.font.render(level_text, True, (255, 255, 255))  # branco
             self.screen.blit(text_surface, (10, 60))
+    
+    def finish_game(self):
+        if self.player:
+       
+            lives_text = f'Vidas: {self.player.get_lives()}'
+          
 
     def handle_events( self ):
         """
@@ -567,7 +573,7 @@ class Game:
 
     def change_level( self ):
         xp = self.player.get_XP()
-        if   xp > 3  and self.level == 0:
+        if   xp > 15  and self.level == 0:
             self.background = Background( "tile2.png" )
             self.level = 1
             self.player.set_lives( self.player.get_lives() + 3 )
@@ -662,7 +668,10 @@ class Game:
             pygame.display.flip()
 
             print("FPS: %0.2f" % clock.get_fps() + " - Lifes: %d" % self.player.get_lives() )
-    
+
+            print()
+            if self.player.get_XP() > 1 :
+                break;
         # while self.run
     # loop()
 # Game
